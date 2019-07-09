@@ -3,6 +3,8 @@ package caledadperson;
 /**
  *
  * @author efcpar
+ * Elvis Carrillo Puga
+ * UTPL Ingeniería de Software
  */
 import java.io.File;
 import java.io.FileInputStream;
@@ -124,6 +126,38 @@ public class CalculoEdad extends javax.swing.JFrame {
 
         String resultado = ("Tienes:  " + periodo.getYears() + " Años, " + periodo.getMonths() + " Meses, " + " y " + periodo.getDays() + " Días ");
         txtResultado.setText(resultado);
+File archivo;
+        FileWriter escribir;
+        PrintWriter linea;
+        String datos = "";
+        archivo= new File ("tarea.txt");
+        if (!archivo.exists()) {
+            try {
+                archivo.createNewFile();
+                datos = resultado;
+                escribir = new FileWriter(archivo, true);
+                linea = new PrintWriter(escribir);
+                linea.println(datos);
+                linea.close();
+                escribir.close();
+            } catch (IOException ex) {
+                Logger.getLogger(CalculoEdad.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        } else {
+            try {
+
+                datos = resultado;
+                escribir = new FileWriter(archivo, true);
+                linea = new PrintWriter(escribir);
+                linea.println(datos);
+                linea.close();
+                escribir.close();
+            } catch (IOException ex) {
+                Logger.getLogger(CalculoEdad.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        }
 
 
     }//GEN-LAST:event_btnCalcularActionPerformed
